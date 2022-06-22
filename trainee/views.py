@@ -7,6 +7,6 @@ from trainee.models import Trainee
 def trainees_list(request):
     trainees = Trainee.objects.all()
     context = {
-        "context": trainees,
+        "trainees": trainees,
     }
     return render(request, 'trainees/list.html', context)
