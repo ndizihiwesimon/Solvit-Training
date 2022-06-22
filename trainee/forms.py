@@ -14,3 +14,4 @@ class TraineeForm(forms.Form):
     
     def save(self, validated_data):
         tr = Trainee(full_name=validated_data['full_name'], dob=validated_data['dob'])
+        tr.save()

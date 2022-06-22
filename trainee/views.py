@@ -7,16 +7,20 @@ from trainee.models import Trainee
 
 def trainees_list(request):
     trainees = Trainee.objects.all()
-    
+    form = TraineeForm()
+    context = {
+            "trainees": trainees,
+            "form": form,
+        }
     if request.method == 'POST':
-        form = TraineeForm()
         trainee_form = form(request.POST)  
-        context = {
-                "trainees": trainees,
-                "form": trainee_form.errors,
-            }
         if trainee_form.is_valid():
             trainee_form.save()
+        else:
+            context = {
+                "trainees": trainees,
+                "errors": trainee_form.errors,
+            }
     return render(request, 'trainees/list.html', context)
 
     
