@@ -10,15 +10,14 @@ def trainees_list(request):
     
     if request.method == 'POST':
         form = TraineeForm()
-        trainee_form = form(request.POST)
-        if trainee_form.is_valid():
-            trainee_form.save()
-        else:
-            context = {
+        trainee_form = form(request.POST)  
+        context = {
                 "trainees": trainees,
                 "form": trainee_form.errors,
             }
-            return render(request, 'trainees/list.html', context)
+        if trainee_form.is_valid():
+            trainee_form.save()
+    return render(request, 'trainees/list.html', context)
 
     
 # Listing
