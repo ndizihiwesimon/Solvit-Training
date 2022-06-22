@@ -77,9 +77,13 @@ WSGI_APPLICATION = 'training.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgres',
-        'NAME': 'myDb',
-        
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'SolviT',
+        'USER': 'postgres',
+        'HOST': 'localhost',
+        'PASSWORD': 2121,
+        'PORT': 5432
+
     }
 }
 
