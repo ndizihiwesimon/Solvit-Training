@@ -39,3 +39,6 @@ class Comment(models.Model):
 class Like(models.Model):
     user = models.ForeignKey(User, related_name='user_likes', on_delete=models.SET_NULL)
     blog = models.ForeignKey(Post, related_name='blog_likes', on_delete=models.SET_NULL)
+
+    def __str__(self):
+        return self.user.username
