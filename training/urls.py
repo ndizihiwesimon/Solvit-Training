@@ -16,10 +16,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 
-from trainee.views import trainees_list
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', trainees_list, name="trainees_list"),
+    path('training/', include('trainee.urls')),
     path('blog/', include('blog.urls')),
 ]

@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from trainee.forms import TraineeForm
 
 from trainee.models import Trainee
@@ -16,6 +16,7 @@ def trainees_list(request):
         trainee_form = form(request.POST)  
         if trainee_form.is_valid():
             trainee_form.save()
+            return redirect('trainees')
         else:
             context = {
                 "trainees": trainees,
@@ -23,7 +24,23 @@ def trainees_list(request):
             }
     return render(request, 'trainees/list.html', context)
 
-    
+def create_trainee(request):
+    form = TraineeForm()
+    context = {
+        "form": form,
+    }
+    if request.method == 'POST':
+        trainee_form = form(request.POST)
+        if trainee_form.is_valid():
+            trainee_form.save()
+            return redirect('trainees')
+        else:
+            context = {
+                "errors": trainee_form.errors,
+            }
+    return render(request, 'trainees/list.html', context)
+
+
 # Listing
 # adding -- using forms, modelForms, or forms
 
