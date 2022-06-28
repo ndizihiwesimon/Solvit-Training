@@ -5,52 +5,39 @@ from trainee.models import Trainee
 
 # Create your views here.
 
+# 1) listing all trainees
+
+
 def trainees_list(request):
     trainees = Trainee.objects.all()
-    form = TraineeForm()
     context = {
-            "trainees": trainees,
-            "form": form,
-        }
-    if request.method == 'POST':
-        trainee_form = form(request.POST)  
-        if trainee_form.is_valid():
-            trainee_form.save()
-            return redirect('trainees')
-        else:
-            context = {
-                "trainees": trainees,
-                "errors": trainee_form.errors,
-            }
+        "trainees": trainees,
+    }
     return render(request, 'trainees/list.html', context)
+
+# 2) adding a trainee (Forms)
+
 
 def create_trainee(request):
     form = TraineeForm()
-    context = {
-        "form": form,
-    }
     if request.method == 'POST':
-        trainee_form = form(request.POST)
-        if trainee_form.is_valid():
-            trainee_form.save()
-            return redirect('trainees')
+        form = TraineeForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('trainees-list')
         else:
-            context = {
-                "errors": trainee_form.errors,
-            }
-    return render(request, 'trainees/list.html', context)
+            form = TraineeForm()
+    return render(request, 'trainees/create.html', {'form': form})
 
-
-# Listing
-# adding -- using forms, modelForms, or forms
-
-# Editing -- View and template only
-# Deleting -- View and template only
-# Last one -- Login Template
-
-# create 5 views
-# 1) listing all trainees
-# 2) adding a trainee (Forms)
 # 3) editing a trainee  NB on the view and the template
+
+
+def trainees_update(request):
+    if request.method == 'PUT':
+        pass
+
 # 4) deleting a trainee NB on the view and the template
-# 5) login template
+
+
+def trainees_delete(request):
+    pass

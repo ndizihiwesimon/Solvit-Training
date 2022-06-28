@@ -4,28 +4,23 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SolviT Trainees</title>
+    <title>Trainee list</title>
 </head>
 <body>
-    <h1>Trainees List</h1>
-    <table>
+     <h1>Trainees List</h1>
+    <table border="1">
         <thead>
             <th>Names</th>
             <th>Date of birth</th>
         </thead>
         <tbody>
             {% for trainee in trainees %}
+            <tr>
             <td>{{ trainee.full_name }}</td>
-            <td>{{ trainee.dob }}</td>
+            <td>{{ trainee.dob }}</td>                
+            </tr> 
             {% endfor %}
         </tbody>
     </table>
-    <h1>Trainee Form</h1>
-    
-    <form action="" method="post">
-        {% csrf_token %}
-        {{form}}
-        <input type="submit" value="Add">
-    </form>
 </body>
 </html>
